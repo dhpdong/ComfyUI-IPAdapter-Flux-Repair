@@ -1,8 +1,9 @@
 # ComfyUI-IPAdapter-Flux-Repair
-Repair the issue for OOM.
-Primitive nodes may have some models that cannot be cleaned up during multiple inferences, occupying memory and ultimately leading to OOM. We have fixed this issue.
+修复显存溢出的问题。
 
-You need to use the modified model loader and sampler nodes. Please refer to the following diagram for the connection method.
+原始的节点，在进行多次推理时，可能有部分模型留存在显存中无法被正常清理，最终导致显存被占满。修改后的节点对这个问题进行了修复。
+
+你需要用修改后的模型导入节点和采样器节点，模型导入节点需要连接一个随机种子生成节点，同时新的采样器节点需要从IPAdapter推理节点的model输出直接连接，其他的连接方式没有改变。具体可以参考下图：
 ![fcf48be6-d7d6-4515-8e6d-260de9fab95a](https://github.com/user-attachments/assets/4bca6600-527f-4756-87a5-aefe7a11602b)
 
-Attention: After the repair, when repeatedly inferring the same image, it will start from the model loader nodes, which will result in longer inference time. Currently, this issue cannot be resolved.
+注意：使用修改后的节点，在对单张图片重复推理时，第二次开始每次都会从模型导入节点开始而非采样节点本身，这会导致一些推理时间上的增加，但目前尚无解决方案，还请理解。
