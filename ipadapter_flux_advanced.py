@@ -204,15 +204,15 @@ class InstantXFluxIPAdapterModelAdvanced:
         image_prompt_embeds = self.image_proj_model(clip_image_embeds)
 
         # 回收显存
-        clip_image.to('cpu')
-        del clip_image
-        clip_image_embeds.to('cpu')
-        del clip_image_embeds
-        self.image_encoder.to('cpu')
-        del self.image_encoder
-        import gc
-        gc.collect()
-        torch.cuda.empty_cache()
+        # clip_image.to('cpu')
+        # del clip_image
+        # clip_image_embeds.to('cpu')
+        # del clip_image_embeds
+        # self.image_encoder.to('cpu')
+        # del self.image_encoder
+        # import gc
+        # gc.collect()
+        # torch.cuda.empty_cache()
 
         return image_prompt_embeds
 
